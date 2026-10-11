@@ -1,0 +1,68 @@
+{
+  "name": "dsh-whale-guard",
+  "version": "0.1.1",
+  "description": "鲸鱼娘防呆插件：把「自己杀自己」这类低级事故变成工具层面的硬拦截 —— safe_kill 工具（自动排除自身与祖先进程链）+ bash 命令预检（pkill 自匹配 / sudo -S 抢 heredoc / rm -rf / 等）+ 可扩展规则库。零依赖、纯 JS。",
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "plugin",
+    "guard",
+    "safety",
+    "pkill",
+    "safe-kill",
+    "防呆",
+    "whale-guard"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./rules": {
+      "default": "./lib/rules.js"
+    },
+    "./procs": {
+      "default": "./lib/procs.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "assets"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "slots",
+        "locale"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WYR-233/dsh-whale-guard.git"
+  },
+  "homepage": "https://github.com/WYR-233/dsh-whale-guard",
+  "bugs": {
+    "url": "https://github.com/WYR-233/dsh-whale-guard/issues"
+  },
+  "license": "MIT"
+}

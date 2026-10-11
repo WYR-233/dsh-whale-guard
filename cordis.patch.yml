@@ -1,0 +1,16 @@
+# dsh-whale-guard 的 profile 补丁：把插件插进 profile 的图层栈。
+# 行按包名引用，Node 解析会找到已安装的代码。
+#
+# ⚠️ 这里**不要写死 rulesFile / stateDir 的绝对路径**：
+#   两者默认按 $DSH_HOME 展开（rulesFile → $DSH_HOME/whale-guard-rules.json，
+#   stateDir → $DSH_HOME/whale-guard）。写死路径会让「隔离实例」误读生产实例的
+#   规则文件——第一次隔离验证（2026-10-09）就是这么踩到的。
+#   真要让某个实例单独指向别处，在这个 profile 自己的 patch 里再覆盖。
+- insert:
+    - id: whale-guard
+      name: 'dsh-whale-guard'
+      config:
+        enabled: true
+        mode: block
+        precheckTools:
+          - bash
